@@ -439,8 +439,8 @@ func main() {
 				fail("command failed, error: %s", err)
 			}
 
-			cmdArgs = append("sentry-wizard", "-i", "cordova")
-			cmd := command.New(cmdArgs[0], cmdArgs[1:]...)
+			newCmdArgs = append("sentry-wizard", "-i", "cordova")
+			cmd := command.New(newCmdArgs[0], newCmdArgs[1:]...)
 			cmd.SetStdout(os.Stdout).SetStderr(os.Stderr).SetStdin(strings.NewReader("y"))
 			log.Donef("$ %s", cmd.PrintableCommandArgs())
 
