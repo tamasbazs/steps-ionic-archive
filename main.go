@@ -440,14 +440,14 @@ func main() {
 				fail("command failed, error: %s", err)
 			}
 
-			newCmdArgs = append(newCmdArgs, "./node_modules/@sentry/wizard/dist/bin.js", "-i", "cordova")
-			cmd = command.New(newCmdArgs[0], newCmdArgs[1:]...)
-			cmd.SetStdout(os.Stdout).SetStderr(os.Stderr).SetStdin(strings.NewReader("y"))
-			log.Donef("$ %s", cmd.PrintableCommandArgs())
+			//newCmdArgs = append(newCmdArgs, "./node_modules/@sentry/wizard/dist/bin.js", "-i", "cordova")
+			//cmd = command.New(newCmdArgs[0], newCmdArgs[1:]...)
+			//cmd.SetStdout(os.Stdout).SetStderr(os.Stderr).SetStdin(strings.NewReader("y"))
+			//log.Donef("$ %s", cmd.PrintableCommandArgs())
 
-			if err := cmd.Run(); err != nil {
-				fail("command failed, error: %s", err)
-			}
+			//if err := cmd.Run(); err != nil {
+			//	fail("command failed, error: %s", err)
+			//}
 		}
 	}
 
