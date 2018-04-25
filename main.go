@@ -366,7 +366,7 @@ func main() {
 
 		cmdArgs := []string{"ionic", "login", configs.Username, configs.Password}
 		cmd := command.New(cmdArgs[0], cmdArgs[1:]...)
-		cmd.SetStdout(os.Stdout).SetStderr(os.Stderr).SetStdin(strings.NewReader("y"))
+		cmd.SetStdout(os.Stdout).SetStderr(os.Stderr).SetStdin(strings.NewReader("\n"))
 
 		log.Donef("$ ionic login *** ***")
 
@@ -440,7 +440,7 @@ func main() {
 				fail("command failed, error: %s", err)
 			}
 
-			newCmdArgs = append(newCmdArgs, "yes '' | ", "./node_modules/@sentry/wizard/dist/bin.js", "-i", "cordova")
+			newCmdArgs = append(newCmdArgs, "./node_modules/@sentry/wizard/dist/bin.js", "-i", "cordova")
 			cmd = command.New(newCmdArgs[0], newCmdArgs[1:]...)
 			cmd.SetStdout(os.Stdout).SetStderr(os.Stderr).SetStdin(strings.NewReader("y"))
 			log.Donef("$ %s", cmd.PrintableCommandArgs())
