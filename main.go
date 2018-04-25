@@ -438,6 +438,15 @@ func main() {
 			if err := cmd.Run(); err != nil {
 				fail("command failed, error: %s", err)
 			}
+
+			cmdArgs = append("sentry-wizard", "-i", "cordova")
+			cmd := command.New(cmdArgs[0], cmdArgs[1:]...)
+			cmd.SetStdout(os.Stdout).SetStderr(os.Stderr).SetStdin(strings.NewReader("y"))
+			log.Donef("$ %s", cmd.PrintableCommandArgs())
+
+			if err := cmd.Run(); err != nil {
+				fail("command failed, error: %s", err)
+			}
 		}
 	}
 
