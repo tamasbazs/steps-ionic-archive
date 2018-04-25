@@ -440,7 +440,7 @@ func main() {
 				fail("command failed, error: %s", err)
 			}
 
-			newCmdArgs = append(newCmdArgs, "sentry-wizard", "-i", "cordova")
+			newCmdArgs = append(newCmdArgs, "yes '' | ", "./node_modules/@sentry/wizard/dist/bin.js", "-i", "cordova")
 			cmd = command.New(newCmdArgs[0], newCmdArgs[1:]...)
 			cmd.SetStdout(os.Stdout).SetStderr(os.Stderr).SetStdin(strings.NewReader("y"))
 			log.Donef("$ %s", cmd.PrintableCommandArgs())
