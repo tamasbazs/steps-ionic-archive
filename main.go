@@ -441,7 +441,7 @@ func main() {
 			}
 
 			newCmdArgs = append(newCmdArgs, "sentry-wizard", "-i", "cordova")
-			cmd := command.New(newCmdArgs[0], newCmdArgs[1:]...)
+			cmd = command.New(newCmdArgs[0], newCmdArgs[1:]...)
 			cmd.SetStdout(os.Stdout).SetStderr(os.Stderr).SetStdin(strings.NewReader("y"))
 			log.Donef("$ %s", cmd.PrintableCommandArgs())
 
