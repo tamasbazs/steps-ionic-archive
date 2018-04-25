@@ -414,6 +414,7 @@ func main() {
 		// platform add
 		for _, platform := range platforms {
 			cmdArgs := []string{"ionic"}
+			var newCmdArgs []string
 			if ionicMajorVersion > 2 {
 				cmdArgs = append(cmdArgs, "cordova")
 			}
