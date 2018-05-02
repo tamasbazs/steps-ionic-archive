@@ -39,6 +39,7 @@ const (
 
 // ConfigsModel ...
 type ConfigsModel struct {
+	Remove		string
 	Platform      string
 	Configuration string
 	Target        string
@@ -59,6 +60,7 @@ type ConfigsModel struct {
 
 func createConfigsModelFromEnvs() ConfigsModel {
 	return ConfigsModel{
+		Remove:		   os.Getenv("remove"),
 		Platform:      os.Getenv("platform"),
 		Configuration: os.Getenv("configuration"),
 		Target:        os.Getenv("target"),
@@ -80,6 +82,7 @@ func createConfigsModelFromEnvs() ConfigsModel {
 
 func (configs ConfigsModel) print() {
 	log.Infof("Configs:")
+	log.Printf("- Remove: %s", configs.Remove)
 	log.Printf("- Platform: %s", configs.Platform)
 	log.Printf("- Configuration: %s", configs.Configuration)
 	log.Printf("- Target: %s", configs.Target)
@@ -366,7 +369,7 @@ func main() {
 
 		cmdArgs := []string{"ionic", "login", configs.Username, configs.Password}
 		cmd := command.New(cmdArgs[0], cmdArgs[1:]...)
-		cmd.SetStdout(os.Stdout).SetStderr(os.Stderr).SetStdin(strings.NewReader("\n"))
+		cmd.SetStdout(os.Stdout).SetStderr(os.Stderr).SetStdin(strings.NewReader("y"))
 
 		log.Donef("$ ionic login *** ***")
 
@@ -386,8 +389,8 @@ func main() {
 	// ionic prepare
 	fmt.Println()
 	log.Infof("Building project")
-
-	{
+	
+	if configs.Remove == "yes" {
 		// platform rm
 		for _, platform := range platforms {
 			cmdArgs := []string{"ionic"}
@@ -414,7 +417,6 @@ func main() {
 		// platform add
 		for _, platform := range platforms {
 			cmdArgs := []string{"ionic"}
-			//var newCmdArgs []string
 			if ionicMajorVersion > 2 {
 				cmdArgs = append(cmdArgs, "cordova")
 			}
@@ -439,15 +441,6 @@ func main() {
 			if err := cmd.Run(); err != nil {
 				fail("command failed, error: %s", err)
 			}
-
-			//newCmdArgs = append(newCmdArgs, "./node_modules/@sentry/wizard/dist/bin.js", "-i", "cordova")
-			//cmd = command.New(newCmdArgs[0], newCmdArgs[1:]...)
-			//cmd.SetStdout(os.Stdout).SetStderr(os.Stderr).SetStdin(strings.NewReader("y"))
-			//log.Donef("$ %s", cmd.PrintableCommandArgs())
-
-			//if err := cmd.Run(); err != nil {
-			//	fail("command failed, error: %s", err)
-			//}
 		}
 	}
 
