@@ -466,7 +466,7 @@ func main() {
 			
 			cmdArgs = append(cmdArgs, platform+ "--")
 			
-			if sliceutil.IsStringInSlice("ios", platform) {
+			if "ios" == platform {
 				cmdArgs = append(cmdArgs, "--buildFlag='-UseModernBuildSystem=0'")
 			}
 
