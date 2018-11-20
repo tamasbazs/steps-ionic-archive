@@ -478,6 +478,8 @@ func main() {
 				cmdArgs = append(cmdArgs, "--buildConfig", configs.BuildConfig)
 			}
 
+			cmdArgs = append(cmdArgs, "--buildFlag='-UseModernBuildSystem=0'")
+			
 			cmdArgs = append(cmdArgs, options...)
 			cmdArgs = append(cmdArgs)
 
