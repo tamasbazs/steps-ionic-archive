@@ -464,7 +464,7 @@ func main() {
 
 			cmdArgs = append(cmdArgs, "build")
 			
-			cmdArgs = append(cmdArgs, platform+ "--")
+			cmdArgs = append(cmdArgs, platform+ " -- ")
 			
 			if "ios" == platform {
 				cmdArgs = append(cmdArgs, "--buildFlag='-UseModernBuildSystem=0'")
