@@ -463,6 +463,12 @@ func main() {
 			}
 
 			cmdArgs = append(cmdArgs, "build")
+			
+			cmdArgs = append(cmdArgs, platform+ "--")
+			
+			if sliceutil.IsStringInSlice("ios", platform) {
+				cmdArgs = append(cmdArgs, "--buildFlag='-UseModernBuildSystem=0'")
+			}
 
 			if configs.Configuration != "" {
 				cmdArgs = append(cmdArgs, "--"+configs.Configuration)
@@ -472,13 +478,12 @@ func main() {
 				cmdArgs = append(cmdArgs, "--"+configs.Target)
 			}
 
-			cmdArgs = append(cmdArgs, platform)
+			
 
 			if configs.BuildConfig != "" {
 				cmdArgs = append(cmdArgs, "--buildConfig", configs.BuildConfig)
 			}
 
-			cmdArgs = append(cmdArgs, "--buildFlag='-UseModernBuildSystem=0'")
 			
 			cmdArgs = append(cmdArgs, options...)
 			cmdArgs = append(cmdArgs)
