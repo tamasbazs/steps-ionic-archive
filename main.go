@@ -465,11 +465,6 @@ func main() {
 			cmdArgs = append(cmdArgs, "build")
 			
 			cmdArgs = append(cmdArgs, platform)
-			
-			if "ios" == platform {
-				cmdArgs = append(cmdArgs, "--")
-				cmdArgs = append(cmdArgs, "--buildFlag='-UseModernBuildSystem=0'")
-			}
 
 			if configs.Configuration != "" {
 				cmdArgs = append(cmdArgs, "--"+configs.Configuration)
@@ -487,6 +482,12 @@ func main() {
 
 			
 			cmdArgs = append(cmdArgs, options...)
+			
+			if "ios" == platform {
+				cmdArgs = append(cmdArgs, "--")
+				cmdArgs = append(cmdArgs, "--buildFlag='-UseModernBuildSystem=0'")
+			}
+			
 			cmdArgs = append(cmdArgs)
 
 			cmd := command.New(cmdArgs[0], cmdArgs[1:]...)
