@@ -421,7 +421,7 @@ func main() {
 				cmdArgs = append(cmdArgs, "cordova")
 			}
 
-			cmdArgs = append(cmdArgs, "platform", "add", "--verbose")
+			cmdArgs = append(cmdArgs, "platform", "add")
 
 			platformVersion := platform
 			pv := getField(configs, "Cordova"+strings.Title(platform)+"Version")
